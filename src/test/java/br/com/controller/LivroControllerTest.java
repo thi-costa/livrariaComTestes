@@ -64,4 +64,38 @@ public class LivroControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
+    @Test
+    public void criarLivroComSucesso() throws Exception{
+        LivroDto livroDto = new LivroDto();
+
+        livroDto.setTitulo("Teste");
+        livroDto.setResumo("Resumo do livro");
+        livroDto.setSumario("Sumario");
+        livroDto.setPreco(20.00);
+        livroDto.setPaginas(100);
+        livroDto.setIsbn("978-6559871121");
+        livroDto.setDataPublicacao(Date.valueOf(LocalDate.now().plusDays(1)));
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(livroDto);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders.post("/livro")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+                )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        LivroEntity livro = repository.findByIsbn("978-6559871121");
+
+        Assertions.assertEquals("Teste", livro.getTitulo());
+        Assertions.assertEquals("Resumo do livro", livro.getResumo());
+        Assertions.assertEquals("Sumario", livro.getSumario());
+        Assertions.assertEquals(20.00, livro.getPreco());
+        Assertions.assertEquals(100, livro.getPaginas());
+        Assertions.assertEquals("978-6559871121", livro.getIsbn());
+        Assertions.assertEquals(Date.valueOf(LocalDate.now().plusDays(1)), livro.getDataPublicacao());
+
+    }
+    }
 }
