@@ -3,9 +3,9 @@
 1. [Enunciado](#enunciado)
 2. [Requisitos](#requisitos)
 3. [Restrições](#restricoes)
-4. [Resultado Esperado](#resultadoEsperado)
-5. [Requisitos Obrigatórios](#requisitosObrigatorios)
-6. [Testes integrados implementados](#testesIntegradosImplementados)
+4. [Resultado Esperado](#resultadoesperado)
+5. [Requisitos Obrigatórios](#requisitosobrigatorios)
+6. [Testes integrados implementados](#testesintegradosimplementados)
 
 # Enunciado <a id="enunciado"></a>
 
@@ -36,17 +36,17 @@ Todo livro deve ter os seguintes atributos abaixo:
 * Data que vai entrar no ar precisa ser no futu
 
 
-# Resultado esperado <a id="resultadoEsperado"></a>
+# Resultado esperado <a id="resultadoesperado"></a>
 
 
 * Um novo livro precisa ser criado e status 200 retornado
 
-# Requisitos obrigatórios <a id="requisitosObrigatorios"></a>
+# Requisitos obrigatórios <a id="requisitosobrigatorios"></a>
 
 * A aplicação precisa ter cobertura mínima de 80% do código da API.
 * Realizar pelo menos 2 testes de integração.
 
-# Testes integrados implementados <a id="testesIntegradosImplementados"></a>
+# Testes integrados implementados <a id="testesintegradosimplementados"></a>
 <details>
   <summary>1. Carregamento do contexto</summary>
   <h5>Objetivo</h5>
