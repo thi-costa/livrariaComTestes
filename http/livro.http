@@ -1,0 +1,9 @@
+### Criar livro 1 (com sucesso)
+POST http://localhost:8080/livro
+Content-Type: application/json
+
+< ./livro01.json
+
+### listar todos
+GET http://localhost:8080/livro
+Content-Type: application/json
