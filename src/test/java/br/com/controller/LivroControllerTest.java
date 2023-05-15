@@ -121,5 +121,34 @@ public class LivroControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError());
 
     }
+    @Test
+    public void criarLivroResumoInvalidoComFalha() throws Exception{
+        LivroDto livro1 = new LivroDto();
+
+        livro1.setTitulo("Titulo");
+        livro1.setResumo("testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetes" +
+                "tetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetesteteste" +
+                "testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestete" +
+                "stetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetes" +
+                "tetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetesteteste" +
+                "teste1");
+        livro1.setSumario("Sumario");
+        livro1.setPreco(20.00);
+        livro1.setPaginas(100);
+        livro1.setIsbn("978-6559871123");
+        livro1.setDataPublicacao(Date.valueOf(LocalDate.now().plusDays(1)));
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(livro1);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders.post("/livro")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+                )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+
+    }
     }
 }
