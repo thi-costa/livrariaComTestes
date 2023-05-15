@@ -97,5 +97,29 @@ public class LivroControllerTest {
         Assertions.assertEquals(Date.valueOf(LocalDate.now().plusDays(1)), livro.getDataPublicacao());
 
     }
+    @Test
+    public void criarLivroTituloInvalidoComFalha() throws Exception{
+        LivroDto livro1 = new LivroDto();
+
+        livro1.setTitulo("");
+        livro1.setResumo("Resumo do livro");
+        livro1.setSumario("Sumario");
+        livro1.setPreco(20.00);
+        livro1.setPaginas(100);
+        livro1.setIsbn("978-6559871122");
+        livro1.setDataPublicacao(Date.valueOf(LocalDate.now().plusDays(1)));
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(livro1);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders.post("/livro")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+                )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+
+    }
     }
 }
